@@ -21,6 +21,9 @@ namespace YouLearn.Domain.ValueObjects
             //}
             // Refatorado utilizando addnotifications
 
+            PrimeiroNome = primeiroNome;
+            UltimoNome = ultimoNome;
+
             new AddNotifications<Nome>(this)
                 .IfNullOrInvalidLength(x => x.PrimeiroNome, 1, 50, MSG.X0_OBRIGATORIA_E_DEVE_CONTER_ENTRE_X1_E_X2_CARACTERES)
                 .IfNullOrInvalidLength(x => x.UltimoNome, 1, 50, MSG.X0_OBRIGATORIA_E_DEVE_CONTER_ENTRE_X1_E_X2_CARACTERES);
@@ -36,8 +39,6 @@ namespace YouLearn.Domain.ValueObjects
 
             //REFATORADO --> colocado tudo dentro do mesmo notifications.
 
-            PrimeiroNome = primeiroNome;
-            UltimoNome = ultimoNome;
         }
 
         public string PrimeiroNome { get; private set; }

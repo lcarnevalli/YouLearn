@@ -13,9 +13,10 @@ namespace YouLearn.Domain.ValueObjects
             //{
             //    throw new Exception("Email Invalido!");
             //}
+            Endereco = endereco;
             new AddNotifications<Email>(this)
                 .IfNotEmail(x=> x.Endereco, MSG.X0_INVALIDO.ToFormat("E-mail"));
-            Endereco = endereco;
+            
         }
 
         public string Endereco { get; private set; }
