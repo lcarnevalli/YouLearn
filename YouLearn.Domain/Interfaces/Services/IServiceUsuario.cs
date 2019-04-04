@@ -1,9 +1,10 @@
 ﻿
 using YouLearn.Domain.Arguments.Usuario;
+using YouLearn.Domain.Interfaces.Services.Base;
 
 namespace YouLearn.Domain.Interfaces.Services
 {
-    public interface IServiceUsuario
+    public interface IServiceUsuario : IServiceBase
     {
         //void AdicionarUsuario(string PrimeiroNome, string UltimoNome, string Email, string Senha) { }
         // Dessa maneira, se em algum momento for incluído um novo parametro em usuário eu tenho que alterar a chamada da minha função. Por exemplo, adicionar endereço do usuário.

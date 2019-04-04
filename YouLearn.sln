@@ -5,9 +5,11 @@ VisualStudioVersion = 15.0.28307.168
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YouLearn.Domain", "YouLearn.Domain\YouLearn.Domain.csproj", "{1EBD58C7-1561-40F4-B5E9-52A35DB21BD1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YouLearn.ConsoleApp", "YouLearn.ConsoleApp\YouLearn.ConsoleApp.csproj", "{00BC84B0-345F-4434-9F04-6D245EFEC808}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YouLearn.Infra", "YouLearn.Infra\YouLearn.Infra.csproj", "{3E07AF48-E9B9-44D7-86AF-40F322D7CDD7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YouLearn.Application", "YouLearn.Application\YouLearn.Application.csproj", "{1FA11344-8090-4C11-8ADC-B9AB30463E9B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YouLearn.Shared", "YouLearn.Shared\YouLearn.Shared.csproj", "{2C3A7A4E-6A73-4D4D-8779-F665155BE6CD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YouLearn.Api4", "YouLearn.Api4\YouLearn.Api4.csproj", "{F40DBD74-D920-486B-97D9-E1912649F595}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,14 +21,18 @@ Global
 		{1EBD58C7-1561-40F4-B5E9-52A35DB21BD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1EBD58C7-1561-40F4-B5E9-52A35DB21BD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1EBD58C7-1561-40F4-B5E9-52A35DB21BD1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{00BC84B0-345F-4434-9F04-6D245EFEC808}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{00BC84B0-345F-4434-9F04-6D245EFEC808}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{00BC84B0-345F-4434-9F04-6D245EFEC808}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{00BC84B0-345F-4434-9F04-6D245EFEC808}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1FA11344-8090-4C11-8ADC-B9AB30463E9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1FA11344-8090-4C11-8ADC-B9AB30463E9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1FA11344-8090-4C11-8ADC-B9AB30463E9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1FA11344-8090-4C11-8ADC-B9AB30463E9B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3E07AF48-E9B9-44D7-86AF-40F322D7CDD7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E07AF48-E9B9-44D7-86AF-40F322D7CDD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E07AF48-E9B9-44D7-86AF-40F322D7CDD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E07AF48-E9B9-44D7-86AF-40F322D7CDD7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C3A7A4E-6A73-4D4D-8779-F665155BE6CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C3A7A4E-6A73-4D4D-8779-F665155BE6CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C3A7A4E-6A73-4D4D-8779-F665155BE6CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C3A7A4E-6A73-4D4D-8779-F665155BE6CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F40DBD74-D920-486B-97D9-E1912649F595}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F40DBD74-D920-486B-97D9-E1912649F595}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F40DBD74-D920-486B-97D9-E1912649F595}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F40DBD74-D920-486B-97D9-E1912649F595}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

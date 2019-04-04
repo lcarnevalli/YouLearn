@@ -5,8 +5,8 @@ namespace YouLearn.Domain.Entities
     public class Favorito : EntityBase
     {
         //public Guid Id { get; set; }
-        public Video Video { get; set; }
-        public Usuario Usuario { get; set; }
+        public Video Video { get; private set; }
+        public Usuario Usuario { get; private set; }
 
     }
 }
