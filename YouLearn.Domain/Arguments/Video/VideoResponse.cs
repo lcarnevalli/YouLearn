@@ -9,8 +9,8 @@ namespace YouLearn.Domain.Arguments.Video
     public class VideoResponse
     {
         public Guid IdVideo { get; private set; }
-        public Guid idCanal { get; private set; }
-        public Guid idPlayList { get; private set; }
+        //public Guid idCanal { get; private set; }
+        //public Guid idPlayList { get; private set; }
         public string Titulo { get; private set; }
         public string Descricao { get; private set; }
         public string Tags { get; private set; }
@@ -23,7 +23,12 @@ namespace YouLearn.Domain.Arguments.Video
             return new VideoResponse()
             {
                 IdVideo = entidade.Id,
-                idCanal = entidade.
+                Titulo = entidade.Titulo,
+                Descricao = entidade.Descricao,
+                Tags = entidade.Tags,
+                OrdemNaPlayList = entidade.OrdemNaPlayList,
+                IdVideoYoutube = entidade.IdVideoYoutube,
+                Status = entidade.Status
             };
         }
     }
