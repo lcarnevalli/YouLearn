@@ -8,11 +8,14 @@ namespace YouLearn.Domain.Interfaces.Repositories
 {
     public interface IRepositoryVideo
     {
-        IEnumerable<Video> Listar(Guid IdUsuario);
-        IEnumerable<Video> ListarCanal(Guid IdUsuario, Guid idCanal);
-        IEnumerable<Video> ListarPlayList(Guid IdUsuario, Guid idPlayList);
+        IEnumerable<Video> Listar(string tags);
+        IEnumerable<Video> Listar(Guid IdPlayList);
+        //IEnumerable<Video> ListarPlayList(Guid IdUsuario, Guid idPlayList);
+        bool ExisteCanalAssociado(Guid idCanal);
+        bool ExistePlayListAssociada(Guid idPlayList);
+
         Video Obter(Guid idVideo);
-        Video Adcionar(Video video, Guid idUsuario);
+        Video Adcionar(Video video);
         void Excluir(Video video);
 
     }

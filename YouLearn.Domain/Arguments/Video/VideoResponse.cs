@@ -8,27 +8,30 @@ namespace YouLearn.Domain.Arguments.Video
 {
     public class VideoResponse
     {
-        public Guid IdVideo { get; private set; }
-        //public Guid idCanal { get; private set; }
-        //public Guid idPlayList { get; private set; }
-        public string Titulo { get; private set; }
-        public string Descricao { get; private set; }
-        public string Tags { get; private set; }
-        public int OrdemNaPlayList { get; private set; }
-        public string IdVideoYoutube { get; private set; }
-        public EnumStatus Status { get; private set; }
+        public string NomeCanal { get; set; }
+        public Guid? IdPlayList { get; set; }
+        public string NomePlayList { get; set; }
+        public string Titulo { get; set; }
+        public string Descricao { get; set; }
+        public string Thumbnail { get; set; }
+        public string IdVideoYoutube { get; set; }
+        public int OrdemNaPlayList { get; set; }
+        public string Url { get; set; }
+
 
         public static explicit operator VideoResponse(Entities.Video entidade)
         {
             return new VideoResponse()
             {
-                IdVideo = entidade.Id,
-                Titulo = entidade.Titulo,
                 Descricao = entidade.Descricao,
-                Tags = entidade.Tags,
-                OrdemNaPlayList = entidade.OrdemNaPlayList,
+                Url = string.Concat("https://www.youtube.com/embed/", entidade.IdVideoYoutube),
+                NomeCanal = entidade.Canal.Nome,
                 IdVideoYoutube = entidade.IdVideoYoutube,
-                Status = entidade.Status
+                Thumbnail = string.Concat("https://img.youtube.com/vi/", entidade.IdVideoYoutube, "/mqdefault.jpg"),
+                Titulo = entidade.Titulo,
+                IdPlayList = entidade.PlayList?.Id,
+                NomePlayList = entidade.PlayList?.Nome,
+                OrdemNaPlayList = entidade.OrdemNaPlayList
             };
         }
     }

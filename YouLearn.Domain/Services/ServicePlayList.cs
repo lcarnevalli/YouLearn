@@ -22,12 +22,17 @@ namespace YouLearn.Domain.Services
 
         private readonly IRepositoryUsuario _repositoryUsuario;
 
-        //construtor
-        public ServicePlayList(IRepositoryUsuario repositoryUsuario , IRepositoryPlayList repositoryPlayList)
+        private readonly IRepositoryVideo _repositoryVideo;
+
+        public ServicePlayList(IRepositoryUsuario repositoryUsuario,IRepositoryPlayList repositoryPlayList,  IRepositoryVideo repositoryVideo)
         {
             _repositoryPlayList = repositoryPlayList;
             _repositoryUsuario = repositoryUsuario;
+            _repositoryVideo = repositoryVideo;
         }
+
+        //construtor
+
 
         public PlayListResponse AdicionarPlayList(AdicionarPlayListRequest request, Guid idUsuario)
         {
@@ -50,8 +55,8 @@ namespace YouLearn.Domain.Services
 
         public Response ExcluirPlayList(Guid idPlayList)
         {
-            //bool existe _repositoryVideo.ExistePlayListAssociada(idPlayList)
-            bool existe = false;
+            bool existe = _repositoryVideo.ExistePlayListAssociada(idPlayList);
+            
             if (existe)
             {
                 AddNotification("PlayList", MSG.NAO_E_POSSIVEL_EXCLUIR_UMA_X0_ASSOCIADA_A_UMA_X1.ToFormat("PlayList","Video"));

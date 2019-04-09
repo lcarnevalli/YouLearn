@@ -21,7 +21,7 @@ namespace YouLearn.Infra.Persistence.Repositories
             _context = context;
         }
 
-        public Video Adcionar(Video video, Guid idUsuario)
+        public Video Adcionar(Video video)
         {
                _context.Videos.Add(video);
 
@@ -33,9 +33,36 @@ namespace YouLearn.Infra.Persistence.Repositories
             _context.Videos.Remove(video);
         }
 
-        public IEnumerable<Video> Listar(Guid IdUsuario)
+        public bool ExisteCanalAssociado(Guid idCanal)
         {
-            return _context.Videos.Where(x => x.UsuarioSugeriu.Id == IdUsuario).AsNoTracking().ToList();
+            return _context.Videos.Any(x => x.Canal.Id == idCanal);
+        }
+
+        public bool ExistePlayListAssociada(Guid idPlayList)
+        {
+
+            //return (_context.PlayLists.Count(x => x.Id == idPlayList) != 0);
+            return _context.Videos.Any(x => x.PlayList.Id == idPlayList);
+        }
+
+        public IEnumerable<Video> Listar(Guid idPlayList)
+        {
+            return _context.Videos.Include(x => x.Canal).Include(x => x.PlayList)
+                .Where(x => x.PlayList.Id == idPlayList).ToList();
+            //return _context.Videos.Where(x => x.id == idPlayList).AsNoTracking().ToList();
+        }
+
+        public IEnumerable<Video> Listar(string tags)
+        {
+            //return _context.Videos.Where(x => x.Tags == tags).AsNoTracking().ToList();
+            var query = _context.Videos.Include(x => x.Canal).Include(x => x.PlayList).AsQueryable();
+            tags.Split(' ').ToList().ForEach(tag =>
+                {
+                    query = query.Where(x => x.Tags.Contains(tag) || x.Titulo.Contains(tag) || x.Descricao.Contains(tag));
+
+                });
+            return query.ToList();
+
         }
 
         public IEnumerable<Video> ListarCanal(Guid IdUsuario, Guid idCanal)

@@ -25,7 +25,7 @@ namespace YouLearn.Domain.Services
             _repositoryUsuario = repositoryUsuario;
         }
 
-        public AdicionarUsuarioResponse AdiconarUsuario(AdicionarUsuarioRequest request)
+        public AdicionarUsuarioResponse AdicionarUsuario(AdicionarUsuarioRequest request)
         {
             if (request == null)
             {
@@ -112,7 +112,7 @@ namespace YouLearn.Domain.Services
 
             if (this.IsInvalid()) return null;
 
-            usuario = _repositoryUsuario.Obter(email, senha);
+            usuario = _repositoryUsuario.Obter(email.Endereco, senha.ValorSenha);
 
             if (usuario == null)
             {

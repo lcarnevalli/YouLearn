@@ -7,6 +7,10 @@ namespace YouLearn.Domain.ValueObjects
 {
     public class Email: Notifiable
     {
+        protected Email()
+        {
+
+        }
         public Email(string endereco)
         {
             //if (endereco.IndexOf("@") < 1)

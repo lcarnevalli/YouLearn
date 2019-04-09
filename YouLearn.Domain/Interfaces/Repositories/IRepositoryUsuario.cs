@@ -9,8 +9,8 @@ namespace YouLearn.Domain.Interfaces.Repositories
     public interface IRepositoryUsuario
     {
         Usuario Obter(Guid id);
-        Usuario Obter(Email email, Senha senha);
+        Usuario Obter(string  email, string senha);
         void Salvar(Usuario usuario);
-        bool Existe(Email email);
+        bool Existe(string email);
     }
 }

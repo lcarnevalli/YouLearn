@@ -10,10 +10,10 @@ namespace YouLearn.Domain.Interfaces.Services
     public interface IServiceVideo : IServiceBase
     {
 
-        IEnumerable<VideoResponse> Listar(Guid idUsuario);
-        IEnumerable<VideoResponse> ListarCanal(Guid idUsuario, Guid idCanal);
-        IEnumerable<VideoResponse> ListarPlayList(Guid idUsuario, Guid idPlayList);
-        VideoResponse AdicionarVideo(AdicionarVideoRequest request, Guid idUsuario);
+        IEnumerable<VideoResponse> Listar(string tags);
+        IEnumerable<VideoResponse> Listar(Guid idPlayList);
+        //IEnumerable<VideoResponse> ListarPlayList(Guid idUsuario, Guid idPlayList);
+        AdicionarVideoResponse AdicionarVideo(AdicionarVideoRequest request, Guid idUsuario);
         Response ExcluirVideo(Guid idVideo);
     }
 }

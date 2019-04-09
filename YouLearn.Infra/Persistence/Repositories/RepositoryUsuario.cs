@@ -20,9 +20,9 @@ namespace YouLearn.Infra.Persistence.Repositories
             _context = context;
         }
 
-        public bool Existe(Email email)
+        public bool Existe(string email)
         {
-            return _context.Usuarios.Any(x => x.Email == email);
+            return _context.Usuarios.Any(x => x.Email.Endereco == email);
 
         }
 
@@ -31,9 +31,10 @@ namespace YouLearn.Infra.Persistence.Repositories
             return _context.Usuarios.FirstOrDefault(x => x.Id == id);
         }
 
-        public Usuario Obter(Email email, Senha senha)
+        public Usuario Obter(string email, string senha)
         {
-            return _context.Usuarios.FirstOrDefault(x => x.Email == email && x.Senha == senha);
+            return _context.Usuarios.FirstOrDefault(x => x.Email.Endereco == email && x.Senha.ValorSenha == senha);
+
         }
 
         public void Salvar(Usuario usuario)

@@ -13,7 +13,7 @@ namespace YouLearn.Domain.Arguments.Video
         public string Titulo { get; set; }
         public string Descricao { get; set; }
         public string Tags { get; set; }
-        public int OrdemNaPlayList { get; set; }
+        public Nullable<int> OrdemNaPlayList { get; set; }
         public string IdVideoYoutube { get; set; }
        
 

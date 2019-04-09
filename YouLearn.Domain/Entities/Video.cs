@@ -8,21 +8,34 @@ namespace YouLearn.Domain.Entities
 {
     public class Video : EntityBase
     {
-        public Video(Canal canal, PlayList playList, string titulo, string descricao, string tags, int ordemNaPlayList, string idVideoYoutube, Usuario usuarioSugeriu)
+        protected Video()
+        {
+                
+        }
+        public Video(Canal canal, PlayList playList, string titulo, string descricao, string tags, int? ordemNaPlayList, string idVideoYoutube, Usuario usuarioSugeriu)
         {
             Canal = canal;
             PlayList = playList;
             Titulo = titulo;
             Descricao = descricao;
             Tags = tags;
-            OrdemNaPlayList = ordemNaPlayList;
+            OrdemNaPlayList = ordemNaPlayList.HasValue ? ordemNaPlayList.Value : 0;
             IdVideoYoutube = idVideoYoutube;
             UsuarioSugeriu = usuarioSugeriu;
             Status = EnumStatus.EmAnalise;
-            new AddNotifications<Video>(this)
-                 .IfNullOrInvalidLength(x => x.Descricao, 2, 500, MSG.X0_OBRIGATORIO_E_DEVE_CONTER_ENTRE_X1_E_X2_CARACTERES.ToFormat("2", "500"));
 
-            AddNotifications(UsuarioSugeriu, canal, playList);
+            new AddNotifications<Video>(this)
+               .IfNullOrInvalidLength(x => x.Titulo, 1, 200, MSG.X0_OBRIGATORIO_E_DEVE_CONTER_ENTRE_X1_E_X2_CARACTERES.ToFormat("Titulo", "1", "200"))
+               .IfNullOrInvalidLength(x => x.Descricao, 1, 255, MSG.X0_OBRIGATORIA_E_DEVE_CONTER_ENTRE_X1_E_X2_CARACTERES.ToFormat("Descrição", "1", "255"))
+               .IfNullOrInvalidLength(x => x.Tags, 1, 50, MSG.X0_OBRIGATORIA_E_DEVE_CONTER_ENTRE_X1_E_X2_CARACTERES.ToFormat("Tag", "1", "100"))
+               .IfNullOrInvalidLength(x => x.IdVideoYoutube, 1, 50, MSG.X0_OBRIGATORIA_E_DEVE_CONTER_ENTRE_X1_E_X2_CARACTERES.ToFormat("Id do Youtube", "1", "50"));
+
+            AddNotifications( canal);
+
+            if (playList != null)
+            {
+                AddNotifications(playList);
+            }
 
         }
 

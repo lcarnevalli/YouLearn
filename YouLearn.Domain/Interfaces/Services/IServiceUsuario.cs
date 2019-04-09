@@ -12,7 +12,7 @@ namespace YouLearn.Domain.Interfaces.Services
         // e assim refatorar em todos os locais que é chamado o adiconar usuário.
         // uma forma mais elegante é eu trabalhar com objetos complexos (tanto para passagem de parametros como para resposta.
         // Adicona-se o sufixo Response ao nome da interface e é criado um objeto complexo com o nome da função mais o sufixo Request.
-        AdicionarUsuarioResponse AdiconarUsuario(AdicionarUsuarioRequest Request);
+        AdicionarUsuarioResponse AdicionarUsuario(AdicionarUsuarioRequest Request);
 
         AutenticarUsuarioResponse AutenticarUsuario(AutenticarUsuarioRequest request);
    

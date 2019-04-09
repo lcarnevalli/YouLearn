@@ -7,6 +7,10 @@ namespace YouLearn.Domain.ValueObjects
 {
     public class Nome : Notifiable
     {
+        protected Nome()
+        {
+
+        }
         //public Nome()
         //{
 

@@ -22,12 +22,18 @@ namespace YouLearn.Domain.Services
 
         private readonly IRepositoryUsuario _repositoryUsuario;
 
-        //construtor
-        public ServiceCanal(IRepositoryUsuario repositoryUsuario , IRepositoryCanal repositoryCanal)
+        private readonly IRepositoryVideo _repositoryVideo;
+
+        public ServiceCanal(IRepositoryUsuario repositoryUsuario, IRepositoryCanal repositoryCanal, IRepositoryVideo repositoryVideo)
         {
             _repositoryCanal = repositoryCanal;
             _repositoryUsuario = repositoryUsuario;
+            _repositoryVideo = repositoryVideo;
         }
+
+
+        //construtor
+
 
         public CanalResponse AdicionarCanal(AdicionarCanalRequest request, Guid idUsuario)
         {
@@ -50,8 +56,8 @@ namespace YouLearn.Domain.Services
 
         public Response ExcluirCanal(Guid idCanal)
         {
-            //bool existe _repositoryVideo.ExisteCanalAssociada(idCanal)
-            bool existe = false;
+            bool existe = _repositoryVideo.ExisteCanalAssociado(idCanal);
+
             if (existe)
             {
                 AddNotification("Canal", MSG.NAO_E_POSSIVEL_EXCLUIR_UMA_X0_ASSOCIADA_A_UMA_X1.ToFormat("Canal", "Video"));

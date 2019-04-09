@@ -1,4 +1,5 @@
 ﻿using prmToolkit.NotificationPattern;
+using prmToolkit.NotificationPattern.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,11 +33,39 @@ namespace YouLearn.Domain.Services
             _repositoryUsuario = repositoryUsuario;
         }
 
-        public VideoResponse AdicionarVideo(AdicionarVideoRequest request, Guid idUsuario)
+        public AdicionarVideoResponse AdicionarVideo(AdicionarVideoRequest request, Guid idUsuario)
         {
+            if (request == null)
+            {
+                AddNotification("AdicionarVideoRequest", MSG.OBJETO_X0_E_OBRIGATORIO.ToFormat("AdicionarVideoRequest"));
+
+            }
+
             Usuario usuario = _repositoryUsuario.Obter(idUsuario);
+
+            if (usuario == null)
+            {
+                AddNotification("usuario", MSG.OBJETO_X0_E_OBRIGATORIO.ToFormat("usuario"));
+
+            }
+
             Canal canal = _repositoryCanal.Obter(request.idCanal);
-            PlayList playList = _repositoryPlayList.Obter(request.idPlayList);
+            if (canal == null)
+            {
+                AddNotification("canal", MSG.OBJETO_X0_E_OBRIGATORIO.ToFormat("canal"));
+
+            }
+            PlayList playList = null;
+            if (request.idPlayList != Guid.Empty)
+            {
+                playList = _repositoryPlayList.Obter(request.idPlayList);
+                if (playList == null)
+                {
+                    AddNotification("PlayList", MSG.X0_NAO_INFORMADA.ToFormat("PlayList"));
+
+                }
+
+            }
 
             Video video = new Video(canal, playList, request.Titulo, request.Descricao, request.Tags, request.OrdemNaPlayList, request.IdVideoYoutube, usuario);
 
@@ -47,9 +76,9 @@ namespace YouLearn.Domain.Services
                 return null;
             }
 
-            _repositoryVideo.Adcionar(video,usuario.Id);
+            _repositoryVideo.Adcionar(video);
 
-            return (VideoResponse)video;
+            return new AdicionarVideoResponse(video.Id);
 
         }
 
@@ -70,27 +99,36 @@ namespace YouLearn.Domain.Services
             return new Response() { Message = MSG.OPERACAO_REALIZADA_COM_SUCESSO };
         }
 
-        public IEnumerable<VideoResponse> ListarCanal(Guid idUsuario, Guid idCanal)
+        //public IEnumerable<VideoResponse> ListarCanal(Guid idUsuario, Guid idCanal)
+        //{
+        //    IEnumerable<Video> videoCollection = _repositoryVideo.ListarCanal(idUsuario, idCanal);
+
+        //    var response = videoCollection.ToList().Select(x => (VideoResponse)x);
+
+        //    return response;
+        //}
+
+        //public IEnumerable<VideoResponse> ListarPlayList(Guid idUsuario, Guid idPlayList)
+        //{
+        //    IEnumerable<Video> videoCollection = _repositoryVideo.ListarPlayList(idUsuario, idPlayList);
+
+        //    var response = videoCollection.ToList().Select(x => (VideoResponse)x);
+
+        //    return response;
+        //}
+
+
+        public IEnumerable<VideoResponse> Listar(string tags)
         {
-                IEnumerable<Video> videoCollection = _repositoryVideo.ListarCanal(idUsuario,idCanal);
-
-                var response = videoCollection.ToList().Select(x => (VideoResponse)x);
-
-                return response;
-        }
-
-        public IEnumerable<VideoResponse> ListarPlayList(Guid idUsuario, Guid idPlayList)
-        {
-            IEnumerable<Video> videoCollection = _repositoryVideo.ListarPlayList(idUsuario, idPlayList);
+            IEnumerable<Video> videoCollection = _repositoryVideo.Listar(tags);
 
             var response = videoCollection.ToList().Select(x => (VideoResponse)x);
 
             return response;
         }
-
-        public IEnumerable<VideoResponse> Listar(Guid idUsuario)
+        public IEnumerable<VideoResponse> Listar(Guid idPlayList)
         {
-            IEnumerable<Video> videoCollection = _repositoryVideo.Listar(idUsuario);
+            IEnumerable<Video> videoCollection = _repositoryVideo.Listar(idPlayList);
 
             var response = videoCollection.ToList().Select(x => (VideoResponse)x);
 

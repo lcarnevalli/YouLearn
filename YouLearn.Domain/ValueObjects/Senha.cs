@@ -8,6 +8,10 @@ namespace YouLearn.Domain.ValueObjects
 {
     public class Senha: Notifiable 
     {
+        protected Senha()
+        {
+
+        }
         public Senha(string valorSenha)
         {
             ValorSenha = valorSenha;
