@@ -1,14 +1,49 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-title>
-      Ionic Blank
+      YouLearn
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <div class="ion-padding">
-    The world is your oyster.
-    <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be your guide.</p>
+    <ion-searchbar placeholder="Digite a aula desejada" #palavra (keyup.enter)="buscarVideo(palavra.value)">
+    </ion-searchbar>
+
+    <ion-card>
+      <ion-card-header>
+        <!-- <ion-card-subtitle>Card Subtitle</ion-card-subtitle> -->
+        <ion-card-title>Titulo</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <img
+          src="https://i.ytimg.com/vi/cPJ_8tPdJpI/hqdefault.jpg?sqp=-oaymwEXCNACELwBSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLBziFhSCzwfP_HdrMIif23rhUPvdQ">
+        Iot, o melhor do iot.
+      </ion-card-content>
+      <ion-row>
+        <!-- <ion-col *ngIf="Video.idPlayList"> -->
+        <ion-col>
+          <!-- <button ion-button icon-left clear small (click)="showPlayList(video)"> -->
+          <button ion-button icon-left clear small>
+            <ion-icon name="md-albuns"></ion-icon>
+            <div> Ver PlayList </div>
+          </button>
+        </ion-col>
+        <ion-col>
+          <!-- <button ion-button icon-left clear small (click)="compartilharFacebook(video)"> -->
+          <button ion-button icon-left clear small>
+            <ion-icon name="text"></ion-icon>
+            <div> Compartilhar </div>
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-card>
   </div>
+  <ion-fab vertical="botton" horizontal="end">
+    <ion-fab-button collor="primary">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>
